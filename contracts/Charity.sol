@@ -201,14 +201,32 @@ contract SupplyChain is SimpleERC20Token {
         return charityIndex.length - 1;
     }
 
+    function requestType(string memory charity) public view returns (string memory) {
+        if (Charities[charity].category == Category.Food) {
+            return "FOOD";
+        } else if (Charities[charity].category == Category.Clothing) {
+            return "CLOTHING";
+        } else if (Charities[charity].category == Category.Furniture) {
+            return "FURNITURE";
+        } else if (Charities[charity].category == Category.Education) {
+            return "EDUCATION";
+        } else if (Charities[charity].category == Category.Transportation) {
+            return "TRANSPORT";
+        } else if (Charities[charity].category == Category.Medical) {
+            return "MEDICAL";
+        } else if (Charities[charity].category == Category.Funding) {
+            return "FUNDING";
+        }
+    }
+
     function getCharityInfo(string memory charity)
         public
         returns (
             address ID,
             uint256 members,
-            string memory request,
-            Category category,
             string memory primaryContact,
+            string memory request,
+            string memory category,
             uint256 tokenReward,
             bool selected
         )
@@ -222,9 +240,9 @@ contract SupplyChain is SimpleERC20Token {
         return (
             Charities[charity].ID,
             Charities[charity].members,
-            Charities[charity].request,
-            Charities[charity].category,
             Charities[charity].primaryContact,
+            Charities[charity].request,
+            requestType(charity),
             Charities[charity].tokenReward,
             Charities[charity].selected
         );
@@ -298,7 +316,7 @@ contract SupplyChain is SimpleERC20Token {
             Charities[charity].selected == false,
             "Charity has already been selected"
         );
-        expires = now + 120 seconds;
+        expires = now + 12 minutes;
         char2Supp[charity] = supplier;
         return Charities[charity].selected = true;
     }

@@ -18,7 +18,7 @@
  *
  */
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 // const infuraKey = "fj4jll3k.....";
 //
 // const fs = require('fs');
@@ -43,57 +43,82 @@ module.exports = {
     // options below to some value.
     //
     development: {
-     host: "localhost",     // Localhost (default: none)
-     port: 8545,            // Standard Ethereum port (default: none)
-     network_id: "*",       // Any network (default: none)
+      host: "localhost",     // Localhost (default: none)
+      //port: 8545,            // Standard Ethereum port (default: none)
+      //gasPrice: 0x01,
+      //gas: 470000000,
+      port: 8545,            // Standard Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
+    },
+    guidev: {
+      host: "127.0.0.1",     // Localhost (default: none)
+      //port: 8545,            // Standard Ethereum port (default: none)
+      //gasPrice: 0x01,
+      //gas: 470000000,
+      port: 7545,            // Standard Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
+    },
+    ropsten: {
+      provider: function () {
+        return new HDWalletProvider('logic brick win smart gap child blind pizza control midnight vague annual', "https://ropsten.infura.io/v3/4e3d493b08a24961be7a074185da3c21")
+        //return new HDWalletProvider('kit puzzle frown perfect clog erupt turtle swap bless record master pyramid', "https://ropsten.infura.io/v3/73b7b47e483f4ddca6ba5658797f9da2")
+      },
+      network_id: 3,
+      gas: 5500000, // Ropsten has a lower block limit than mainnet
+      confirmations: 0, // # of confs to wait between deployments. (default: 0)
+      timeoutBlocks: 200, // # of blocks before a deployment times out  (minimum/default: 50)
+      skipDryRun: true, // Skip dry run before migrations? (default: false for public nets )
+      networkCheckTimeout: 10000
+    },
+    coverage: {
+      host: "127.0.0.1",
+      network_id: "*",
+      port: 8555,
+      gas: 0xffffffffff,
+      gasPrice: 0x01
     },
 
-    coverage: {
-      host: "localhost",     // Localhost (default: none)
-      port: 8555,            // Standard Ethereum port (default: none)
-      network_id: "*",
-      gas: 0xfffffffffff,
-      gasPrice: 0x01
-    }
     // Another network with more advanced options...
     // advanced: {
-      // port: 8777,             // Custom port
-      // network_id: 1342,       // Custom network
-      // gas: 8500000,           // Gas sent with each transaction (default: ~6700000)
-      // gasPrice: 20000000000,  // 20 gwei (in wei) (default: 100 gwei)
-      // from: <address>,        // Account to send txs from (default: accounts[0])
-      // websockets: true        // Enable EventEmitter interface for web3 (default: false)
+    // port: 8777,             // Custom port
+    // network_id: 1342,       // Custom network
+    // gas: 8500000,           // Gas sent with each transaction (default: ~6700000)
+    // gasPrice: 20000000000,  // 20 gwei (in wei) (default: 100 gwei)
+    // from: <address>,        // Account to send txs from (default: accounts[0])
+    // websockets: true        // Enable EventEmitter interface for web3 (default: false)
     // },
 
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
     // ropsten: {
-      // provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/YOUR-PROJECT-ID`),
-      // network_id: 3,       // Ropsten's id
-      // gas: 5500000,        // Ropsten has a lower block limit than mainnet
-      // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
-      // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
-      // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+    // provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/YOUR-PROJECT-ID`),
+    // network_id: 3,       // Ropsten's id
+    // gas: 5500000,        // Ropsten has a lower block limit than mainnet
+    // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
+    // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+    // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     // },
 
     // Useful for private networks
     // private: {
-      // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),
-      // network_id: 2111,   // This network is yours, in the cloud.
-      // production: true    // Treats this network as if it was a public net. (default: false)
+    // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),
+    // network_id: 2111,   // This network is yours, in the cloud.
+    // production: true    // Treats this network as if it was a public net. (default: false)
     // }
   },
+
+  plugins: ["solidity-coverage"],
 
   // Set default mocha options here, use special reporters etc.
   mocha: {
     // timeout: 100000
   },
-  
-  plugins: ["solidity-coverage"],
+
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.5.16",    // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.5.16"    // Fetch exact version from solc-bin (default: truffle's version)
+      // version: "0.5.1",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
@@ -101,7 +126,7 @@ module.exports = {
       //    runs: 200
       //  },
       //  evmVersion: "byzantium"
-      // }
     }
+    // }
   }
 }

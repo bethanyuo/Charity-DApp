@@ -1,0 +1,119 @@
+<div class="container">
+    <div [hidden]="submitted">
+        <h1>New Charity Form</h1>
+        <form (ngSubmit)="onSubmit(clientForm)" #clientForm="ngForm">
+            <div class="form-group">
+                <label for="name">Charity Name</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"
+                    #name="ngModel">
+                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    Name is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Account Address</label>
+                <input type="text" class="form-control" id="address" required [(ngModel)]="model.address"
+                    name="accountAddress" #address="ngModel">
+                <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
+                    Account Address is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="members">Member Size</label>
+                <input type="number" class="form-control" id="members" required [(ngModel)]="model.members"
+                    name="members" #members="ngModel">
+                <div [hidden]="members.valid || members.pristine" class="alert alert-danger">
+                    Member Size is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="primaryContact">Primary Contact</label>
+                <input type="email" class="form-control" id="primaryContact" required [(ngModel)]="model.primaryContact"
+                    name="primaryContact" #primaryContact="ngModel">
+                <div [hidden]="primaryContact.valid || primaryContact.pristine" class="alert alert-danger">
+                    Primary Contact is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="request">Request Information</label>
+                <input type="text" class="form-control" id="request" required [(ngModel)]="model.request" name="request"
+                    #request="ngModel">
+                <div [hidden]="request.valid || request.pristine" class="alert alert-danger">
+                    Request Information is required
+                </div>
+            </div>
+
+            <!-- <div class="form-group">
+                <label for="urgent1">Is Your Request Urgent?</label>
+                <label for="urgent1"><input type="radio" class="form-control" id="urgent1" required [(ngModel)]="model.urgent"
+                    name="urgent1" > Yes</label><br><br>
+                <label for="urgent2"><input type="radio" class="form-control" id="urgent2" required [(ngModel)]="model.urgent" 
+                    name="urgent2" #urgent2="ngModel"> No</label>
+                 <div [hidden]="urgent1.valid || urgent1.pristine" class="alert alert-danger">
+                <div [hidden]="urgent2.valid || urgent2.pristine" class="alert alert-danger"> 
+                    Urgency Label is required
+                </div>
+            </div> -->
+
+            <div class="form-group">
+                <input type="radio" id="yes" name="urgent" value="yes">
+                <label for="yes"> Yes</label><br>
+            </div>
+
+            <!-- <div class=" form-group">
+                <label for="type">Request Type</label>
+                <mat-form-field>
+                    <mat-label>Request Type</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="type">
+                        <mat-option *ngFor="let type of types" [value]="type.value">
+                            {{type.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+                <div [hidden]="type.valid || type.pristine" class="alert alert-danger">
+                    Request Information is required
+                </div>
+            </div> -->
+
+            <!-- <div class="form-group">
+          <label for="alterEgo">Account Address</label>
+          <input type="text" class="form-control" id="address" [(ngModel)]="model.address" name="accountAddress">
+        </div> -->
+
+            <button type="submit" class="btn btn-success" [disabled]="!clientForm.form.valid">Submit</button>
+            <!-- <button type="button" class="btn btn-default" (click)="newHero(); clientForm.reset()">New Hero</button>
+        <i>with</i> reset
+  
+        &nbsp;&nbsp;
+        <button type="button" class="btn btn-default" (click)="newHero()">New Hero</button>
+        <i>without</i> reset -->
+
+            <!-- NOT SHOWN IN DOCS -->
+            <div>
+                <hr>
+                Form values via form.controls = {{showFormControls(clientForm)}}
+            </div>
+            <!-- - -->
+        </form>
+    </div>
+
+    <div [hidden]="!submitted">
+        <h2>You submitted the following New Client:</h2>
+        <div class="row">
+            <div class="col-xs-3">Name: </div>
+            <div class="col-xs-9">{{ model.name }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Account Address: </div>
+            <div class="col-xs-9">{{ model.address }}</div>
+        </div>
+        <br>
+        <!-- <button class="btn btn-primary" (click)="submitted=false">New</button> -->
+        <button class="btn btn-primary" (click)="newClient()">New</button>
+    </div>
+</div>

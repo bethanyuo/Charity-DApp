@@ -1,0 +1,65 @@
+<div class="container">
+    <div [hidden]="submitted">
+        <h1>New Charity Form</h1>
+        <form (ngSubmit)="onSubmit(clientForm)" #clientForm="ngForm">
+            <div class="form-group">
+                <label for="name">Charity Name</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"
+                    #name="ngModel">
+                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    Name is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address">Account Address</label>
+                <input type="text" class="form-control" id="address" required [(ngModel)]="model.address"
+                    name="accountAddress" #address="ngModel">
+                <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
+                    Account Address is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="members">Member Size</label>
+                <input type="number" class="form-control" id="members" required [(ngModel)]="model.members"
+                    name="members" #members="ngModel">
+                <div [hidden]="members.valid || members.pristine" class="alert alert-danger">
+                    Member Size is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="primaryContact">Primary Contact</label>
+                <input type="email" class="form-control" id="primaryContact" required [(ngModel)]="model.primaryContact"
+                    name="primaryContact" #primaryContact="ngModel">
+                <div [hidden]="primaryContact.valid || primaryContact.pristine" class="alert alert-danger">
+                    Primary Contact is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="request">Request Information</label>
+                <input type="text" class="form-control" id="request" required [(ngModel)]="model.request" name="request"
+                    #request="ngModel">
+                <div [hidden]="request.valid || request.pristine" class="alert alert-danger">
+                    Request Information is required
+                </div>
+            </div>
+            <label for="urgent">Is Your Request Urgent?</label>
+            <div class="form-group">
+                <input type="radio" class="form-control" #urgent="ngModel" id="urgent" name="urgent" [value]="true" [(ngModel)]="model.urgent"> 
+                <label for="yes"> Yes</label><br>
+            </div>
+            <div class="form-group">
+                <input type="radio" class="form-control" #urgent="ngModel" id="urgent" name="urgent" [value]="false" [(ngModel)]="model.urgent"> 
+                <label for="no"> No</label><br>
+            </div>
+            <!-- <button type="submit" class="btn btn-success" [disabled]="!clientForm.form.valid">Submit</button> -->
+            <button type="submit" class="btn btn-success" >Submit</button> 
+ 
+        </form>
+
+
+    </div>
+    <div [hidden]="!submitted">
+
+    </div>
+</div>
