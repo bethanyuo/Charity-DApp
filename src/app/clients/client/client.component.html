@@ -45,21 +45,68 @@
             </div>
             <label for="urgent">Is Your Request Urgent?</label>
             <div class="form-group">
-                <input type="radio" class="form-control" #urgent="ngModel" id="urgent" name="urgent" [value]="true" [(ngModel)]="model.urgent"> 
-                <label for="yes"> Yes</label><br>
+                <label for="yes"><input type="radio" class="form-control" id="urgent" [value]="true" [(ngModel)]="model.urgent" name="urgent" #urgent="ngModel">  Yes</label>
             </div>
             <div class="form-group">
-                <input type="radio" class="form-control" #urgent="ngModel" id="urgent" name="urgent" [value]="false" [(ngModel)]="model.urgent"> 
-                <label for="no"> No</label><br>
+                <label for="no"><input type="radio" class="form-control" id="urgent" [value]="false" [(ngModel)]="model.urgent" name="urgent" #urgent="ngModel"> 
+                <!-- style="height:35px; width:35px; vertical-align: middle;" -->
+                No</label><br>
             </div>
-            <!-- <button type="submit" class="btn btn-success" [disabled]="!clientForm.form.valid">Submit</button> -->
-            <button type="submit" class="btn btn-success" >Submit</button> 
- 
+            <div class=" form-group">
+                <label for="type">Request Type</label><br>
+                <!-- <mat-form-field> -->
+                    <!-- <label>Request Type</label> -->
+                    <select [(ngModel)]="model.category" name="type" id="type">
+                        <option *ngFor="let type of types" [value]="type.value">
+                            {{type.viewValue}}
+                        </option>
+                    </select>
+                <!-- </mat-form-field> -->
+                
+                <!-- <div [hidden]="types.valid || types.pristine" class="alert alert-danger">
+                    Request Information is required
+                </div> -->
+            </div><br>
+            <button type="submit" class="btn btn-success" [disabled]="!clientForm.form.valid">Submit</button><br><br>
+            <!-- <button type="submit" class="btn btn-success" >Submit</button>  -->
+            <div>
+                <hr>
+                Form values via form.controls = {{showFormControls(clientForm)}}
+              </div>
         </form>
-
-
     </div>
     <div [hidden]="!submitted">
-
+        <h2>You submitted the following New Client:</h2>
+        <div class="row">
+          <div class="col-xs-3">Name: </div>
+          <div class="col-xs-9">{{ model.name }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Account Address:  </div>
+          <div class="col-xs-9">{{ model.address }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Member Size: </div>
+            <div class="col-xs-9">{{ model.members }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Primary Contact: </div>
+          <div class="col-xs-9">{{ model.primaryContact }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Request Information: </div>
+          <div class="col-xs-9">{{ model.request }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Request Urgency: </div>
+          <div class="col-xs-9">{{ model.urgent }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Request Type: </div>
+          <div class="col-xs-9">{{ model.category }}</div>
+        </div>
+        <br>
+        <!-- <button class="btn btn-primary" (click)="submitted=false">New</button> -->
+        <button class="btn btn-primary" (click)="newClient()">New Request</button>
     </div>
 </div>

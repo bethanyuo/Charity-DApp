@@ -1,0 +1,39 @@
+<div class="container">
+    <div [hidden]="submitted && !unselected">
+        <h4>Would you like to select this Charity?</h4><br>
+        <form (ngSubmit)="onSubmit(selectForm)" #selectForm="ngForm">
+
+            <div class="form-group">
+                <label for="supplierName">Contractor Name</label>
+                <input type="text" class="form-control" id="supplierName" required [(ngModel)]="model.supplierName" name="supplierName"
+                    #supplierName="ngModel">
+                <div [hidden]="supplierName.valid || supplierName.pristine" class="alert alert-danger">
+                    Contractor Name is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="supplierID">Contractor Account Address</label>
+                <input type="text" class="form-control" id="supplierID" required [(ngModel)]="model.supplierID" name="supplierID"
+                    #supplierID="ngModel">
+                <div [hidden]="supplierID.valid || supplierID.pristine" class="alert alert-danger">
+                    Contractor Account Address is required
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success" [disabled]="!selectForm.form.valid">Submit</button>
+
+            <!-- NOT SHOWN IN DOCS -->
+            <!-- <div>
+                <hr>
+                Form values via form.controls = {{showFormControls(selectForm)}}
+            </div> -->
+            <!-- - -->
+        </form>
+    </div>
+
+    <div [hidden]="!submitted">
+        <h2>Thank you for selecting this Charity!</h2><br>
+        <p>Please complete requested delivery within 2 business days.</p>
+    </div>
+
+</div>

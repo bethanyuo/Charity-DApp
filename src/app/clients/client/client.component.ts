@@ -50,16 +50,19 @@ export class ClientComponent implements OnInit {
     this.submitted = true;
     console.log(form.controls);
 
-    let flag: boolean;
-    flag = form.controls['urgent'].value;
-    console.log("DEBUG1 flag=",flag);
-    // this.clientService.createClient(form.controls['name'].value, form.controls['accountAddress'].value, form.controls['request'].value, form.controls['members'].value, form.controls['primaryContact'].value, flag, form.controls['type'].value)
-    //   .then(res => {
-    //     console.log(res)
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   });
+    // let flag: boolean;
+    // flag = form.controls['urgent'].value;
+    // console.log("DEBUG1 flag=",flag);
+    this.clientService.createClient(form.controls['name'].value, form.controls['accountAddress'].value, 
+                                    form.controls['request'].value, form.controls['members'].value, 
+                                    form.controls['primaryContact'].value, form.controls['urgent'].value, 
+                                    form.controls['type'].value)
+       .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      });
   }
 
   // TODO: Remove this when we're done
@@ -74,7 +77,8 @@ export class ClientComponent implements OnInit {
         // console.log('Name:' + form.controls['name'].value);
         rVal =
           'Name: ' + form.controls['name'].value +
-          ', Account Address: ' + form.controls['accountAddress'].value;
+          ',   Account Address: ' + form.controls['accountAddress'].value +
+          ',   Urgency: ' + form.controls['urgent'].value + ',   Category: ' + form.controls['type'].value;
         //console.log(rVal);
       }
     }

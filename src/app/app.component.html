@@ -2,22 +2,22 @@
   <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
     <li [ngbNavItem]="1"
       routerLinkActive="active"
-      ngbTooltip="Add new client"
+      ngbTooltip="Add new charity request"
     >
-      <a ngbNavLink routerLink="/app-client">New Charity</a>
+      <a ngbNavLink routerLink="/client">New Charity</a>
       <ng-template ngbNavContent>
         <!-- <app-new-client></app-new-client> -->
       </ng-template>
     </li>
-    <!-- <li [ngbNavItem]="2"
+    <li [ngbNavItem]="2"
       routerLinkActive="active"
-      ngbTooltip="Client List"
+      ngbTooltip="Search for available charities"
     >
-      <a ngbNavLink routerLink="/client-list">Client List</a>
+      <a ngbNavLink routerLink="/search">Charity Search</a>
       <ng-template ngbNavContent>
       </ng-template>
     </li>
-    <li [ngbNavItem]="3"
+    <!-- <li [ngbNavItem]="3"
       routerLinkActive="active"
       ngbTooltip="Add new invoice"
     >

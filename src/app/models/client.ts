@@ -10,9 +10,9 @@ export class Client {
       this.name = '';
       this.address = '';
       this.request = '';
-      this.members = 0;
+      this.members = null;
       this.primaryContact = '';
-      this.category = 0;
+      this.category = null;
       this.urgent = false;
     }
   }

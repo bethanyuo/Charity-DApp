@@ -1,0 +1,78 @@
+<div class="container">
+    <div [hidden]="submitted">
+        <h1>Search Available Charities</h1>
+        <form (ngSubmit)="onSubmit(searchForm)" #searchForm="ngForm">
+
+            <div class="form-group">
+                <label for="name">Charity Name</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"
+                    #name="ngModel">
+                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    Charity Name is required
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success" [disabled]="!searchForm.form.valid">Submit</button>
+
+            <!-- NOT SHOWN IN DOCS -->
+            <div>
+                <hr>
+                Form values via form.controls = {{showFormControls(searchForm)}}
+            </div>
+            <!-- - -->
+        </form>
+    </div>
+
+    <div [hidden]="!submitted">
+        <h2>Charity: {{model.name}}</h2>
+        <div class="row">
+            <p *ngIf="loadedRequests.length < 1 && !isFetching">No Charity Requests available!</p>
+            <table class="table table-bordered">
+                <tbody *ngIf="loadedRequests.length >= 1 && !isFetching">
+                    <!-- <tr *ngFor="let charity of loadedRequests"> -->
+                    <tr *ngFor="let charity of loadedRequests">
+                        <th>Account Address:</th>
+                        <td>{{charity?.ID}}</td>
+                    </tr>
+                    <tr *ngFor="let charity of loadedRequests">
+                        <th>Member Size:</th>
+                        <td>{{charity?.members}}</td>
+                    </tr>
+                    <tr *ngFor="let charity of loadedRequests">
+                        <th>Primary Contact:</th>
+                        <td>{{charity?.primaryContact}}</td>
+                    </tr>
+                    <tr *ngFor="let charity of loadedRequests">
+                        <th>Request Info:</th>
+                        <td>{{charity?.request}}</td>
+                    </tr>
+                    <tr *ngFor="let charity of loadedRequests">
+                        <th>Request Type:</th>
+                        <td>{{charity?.category}}</td>
+                    </tr>
+                    <tr *ngFor="let charity of loadedRequests">
+                        <th>Token Reward:</th>
+                        <td>{{charity?.tokenReward}}</td>
+                    </tr>
+                    <tr *ngFor="let charity of loadedRequests">
+                        <th>Already Selected:</th>
+                        <td>{{charity?.selected}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Charity Name: </div>
+            <div class="col-xs-9">{{ model?.name }}</div>
+        </div>
+        <br>
+        <br>
+        <!-- <div [disabled]="!unselected">
+        </div> -->
+        <app-select [unselected]="!unselected"></app-select>
+        <br><br>
+        <!-- <button class="btn btn-primary" (click)="submitted=false">New</button> -->
+        <button class="btn btn-primary" (click)="newRequest()">New Search</button>
+    </div>
+
+</div>

@@ -203,19 +203,19 @@ contract SupplyChain is SimpleERC20Token {
 
     function requestType(string memory charity) public view returns (string memory) {
         if (Charities[charity].category == Category.Food) {
-            return "FOOD";
+            return "Food";
         } else if (Charities[charity].category == Category.Clothing) {
-            return "CLOTHING";
+            return "Clothing";
         } else if (Charities[charity].category == Category.Furniture) {
-            return "FURNITURE";
+            return "Furniture";
         } else if (Charities[charity].category == Category.Education) {
-            return "EDUCATION";
+            return "Education";
         } else if (Charities[charity].category == Category.Transportation) {
-            return "TRANSPORT";
+            return "Transport";
         } else if (Charities[charity].category == Category.Medical) {
-            return "MEDICAL";
+            return "Medical";
         } else if (Charities[charity].category == Category.Funding) {
-            return "FUNDING";
+            return "Funding";
         }
     }
 

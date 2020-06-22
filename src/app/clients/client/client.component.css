@@ -1,0 +1,17 @@
+input[type="radio"] { 
+    border: 30 px;
+    height: 30px;  
+    width: 30px;
+    float: left;
+    vertical-align: baseline;
+}
+
+#type {
+    width: 200px;
+}
+
+/* input[type=radio] {
+    border: 0px;
+    width: 100%;
+    height: 2em;
+} */
