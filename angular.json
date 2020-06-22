@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Charity"
+    }
+  },
+  "defaultProject": "Charity",
+  "cli": {
+    "analytics": "501efea5-da04-4033-8aad-abaf787d96e6"
+  }
 }

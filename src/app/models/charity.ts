@@ -9,6 +9,7 @@ export class Charity {
     public selected: boolean;
     public supplierName: string;
     public supplierID: string;
-    constructor() {}
+    constructor() {
+      this.selected = false;
+    }
   }
-  

@@ -10,11 +10,11 @@ declare let charity: string;
 
 export class SearchService {
 
-  constructor(private web3Service: Web3Service) { 
+  constructor(private web3Service: Web3Service) {
 
   }
   charityName: string = "";
-  
+
   public async getCharityInfo(charityName: string): Promise<Charity> {
     console.log("GET CLIENT");
     try {
@@ -23,9 +23,10 @@ export class SearchService {
       let owner: string = this.web3Service.owner;
       return await this.web3Service.contract.methods.getCharityInfo(charityName).call({ from: owner, gas: 3000000 });
     } catch (err) {
-      console.log('SearchService.getCharityInfo(): failed:', err);
-      alert('SearchService.getCharityInfo(): failed:' + err);
-      return err;
+      // console.log('SearchService.getCharityInfo(): failed:', err);
+      // alert('SearchService.getCharityInfo(): failed:' + err);
+      throw err;
+      //return err;
     }
   }
 }

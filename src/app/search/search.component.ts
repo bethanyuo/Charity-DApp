@@ -11,7 +11,7 @@ import { Charity } from '../models/charity';
 export class SearchComponent implements OnInit {
 
   public submitted = false;
-  public unselected = true;
+  // public unselected = true;
   public model = new Charity();
   public isFetching: boolean = false;
   public loadedRequests: Charity[] = [];
@@ -39,15 +39,16 @@ export class SearchComponent implements OnInit {
         if (charity !== undefined) {
           console.log('SUCCESS: ', charity);
           this.loadedRequests.push(charity);
-          if (charity.selected === true || charity.selected === null) {
-            this.unselected = false;
-          }
+          // if (charity.selected === true || charity.selected === null) {
+          //   this.unselected = false;
+          // }
         } else {
           console.log('SearchComponent.onSubmit(): getCharityInfo() returned no data');
         }
       }).catch(err => {
         this.isFetching = false;
         console.log(err);
+        alert('SearchComponent.onSubmit(): failed.  Most likely the client does not exist.');
       });
   }
 

@@ -12,7 +12,7 @@ import { SearchService } from '../services/search.service';
 export class SelectComponent implements OnInit {
 
   @Input()
-  public unselected = true;
+  public selected = false;
 
   public submitted = false;
   public model = new Charity();
@@ -26,7 +26,7 @@ export class SelectComponent implements OnInit {
     //this.searchService.charityName
     console.log(form);
     this.submitted = true;
-    this.selectService.selectCharity(this.model.name, 
+    this.selectService.selectCharity(this.model.name,
                                     form.controls['supplierName'].value,
                                     form.controls['supplierID'].value)
       .then(res => {

@@ -1,5 +1,5 @@
 <div class="container">
-    <div [hidden]="submitted && !unselected">
+    <div [hidden]="!selected">
         <h4>Would you like to select this Charity?</h4><br>
         <form (ngSubmit)="onSubmit(selectForm)" #selectForm="ngForm">
 
