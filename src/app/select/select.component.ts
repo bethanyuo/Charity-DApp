@@ -11,8 +11,11 @@ import { SearchService } from '../services/search.service';
 })
 export class SelectComponent implements OnInit {
 
+  // @Input()
+  // public selected = false;
+
   @Input()
-  public selected = false;
+  public name: string = "";
 
   public submitted = false;
   public model = new Charity();
@@ -26,18 +29,22 @@ export class SelectComponent implements OnInit {
     //this.searchService.charityName
     console.log(form);
     this.submitted = true;
-    this.selectService.selectCharity(this.model.name,
-                                    form.controls['supplierName'].value,
-                                    form.controls['supplierID'].value)
+    this.model.name = this.name;
+    this.model.supplierName = form.controls['supplierName'].value;
+    this.model.supplierID = form.controls['supplierID'].value;
+    this.selectService.selectCharity(this.name,
+      form.controls['supplierName'].value,
+      form.controls['supplierID'].value)
       .then(res => {
         if (res !== undefined) {
           console.log('SUCCESS: ', res);
-          console.log("charity name = " + this.model.name);
+          console.log("DEBUG");
+          console.log("charity name = " + this.name);
           // if (res === true) {
           //   this.unselected = false;
           // }
         } else {
-          console.log('SearchComponent.onSubmit(): getCharityInfo() returned no data');
+          console.log('SelectComponent.onSubmit(): getCharityInfo() returned no data');
         }
       }).catch(err => {
         console.log(err);

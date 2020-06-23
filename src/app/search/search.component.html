@@ -69,7 +69,9 @@
         <br>
         <!-- <div [disabled]="!unselected">
         </div> -->
-        <app-select [selected]="!model.selected"></app-select>
+        <app-select [name]="model.name"></app-select>
+        <!-- <app-select [selected]="model.selected" [name]="model.name"></app-select> -->
+        <!-- <app-select [selected]="selected()" [name]="model.name"></app-select> -->
         <br><br>
         <!-- <button class="btn btn-primary" (click)="submitted=false">New</button> -->
         <button class="btn btn-primary" (click)="newRequest()">New Search</button>

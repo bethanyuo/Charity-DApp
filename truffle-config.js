@@ -42,7 +42,7 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    development: {
+    development: {            //truffle migrate --reset --network development
       host: "localhost",     // Localhost (default: none)
       //port: 8545,            // Standard Ethereum port (default: none)
       //gasPrice: 0x01,

@@ -1,9 +1,16 @@
 <div class="container">
     <!-- <div [hidden]="!selected"> -->
     <div [hidden]="submitted">
-        <h4>Would you like to select this Charity?</h4><br>
-        <form (ngSubmit)="onSubmit(selectForm)" #selectForm="ngForm">
-
+        <h1>Complete Your Delivery</h1>
+        <form (ngSubmit)="onSubmit(deliveryForm)" #deliveryForm="ngForm">
+            <div class="form-group">
+                <label for="name">Charity Name</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"
+                    #name="ngModel">
+                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    Charity Name is required
+                </div>
+            </div>
             <div class="form-group">
                 <label for="supplierName">Contractor Name</label>
                 <input type="text" class="form-control" id="supplierName" required [(ngModel)]="model.supplierName" name="supplierName"
@@ -19,22 +26,23 @@
                 <div [hidden]="supplierID.valid || supplierID.pristine" class="alert alert-danger">
                     Contractor Account Address is required
                 </div>
-            </div>
+            </div><br>
 
-            <button type="submit" class="btn btn-success" [disabled]="!selectForm.form.valid">Submit</button>
+            <button type="submit" class="btn btn-success" [disabled]="!deliveryForm.form.valid">Submit</button>
 
             <!-- NOT SHOWN IN DOCS -->
             <!-- <div>
                 <hr>
-                Form values via form.controls = {{showFormControls(selectForm)}}
+                Form values via form.controls = {{showFormControls(deliveryForm)}}
             </div> -->
             <!-- - -->
         </form>
     </div>
 
     <div [hidden]="!submitted">
-        <h2>Thank you for selecting this Charity!</h2><br>
-        <p>Please complete requested delivery within 2 business days.</p>
+        <h2>Thank you for completing your delivery for this Charity!</h2><br>
+        <p>Your token reward will be reflected in your account shortly.</p><br><br>
+        <button class="btn btn-primary" (click)="newDelivery()">Update New Delivery</button>
     </div>
     <!-- </div> -->
 

@@ -4,7 +4,7 @@
       routerLinkActive="active"
       ngbTooltip="Add new charity request"
     >
-      <a ngbNavLink routerLink="/client">New Charity</a>
+      <a ngbNavLink routerLink="/charity">New Charity</a>
       <ng-template ngbNavContent>
         <!-- <app-new-client></app-new-client> -->
       </ng-template>
@@ -17,24 +17,24 @@
       <ng-template ngbNavContent>
       </ng-template>
     </li>
-    <!-- <li [ngbNavItem]="3"
+    <li [ngbNavItem]="3"
       routerLinkActive="active"
-      ngbTooltip="Add new invoice"
+      ngbTooltip="Add new contractors"
     >
-      <a ngbNavLink routerLink="/new-invoice">New Invoice</a>
+      <a ngbNavLink routerLink="/contractor">New Contractor</a>
       <ng-template ngbNavContent>
-       <app-new-invoice></app-new-invoice>
+      <!-- <app-new-invoice></app-new-invoice> -->
       </ng-template>
     </li>
     <li [ngbNavItem]="4"
       routerLinkActive="active"
-      ngbTooltip="Update invoice"
+      ngbTooltip="Update delivery as completed"
     >
-      <a ngbNavLink routerLink="/update-invoice">Update Invoice</a>
+      <a ngbNavLink routerLink="/delivery">Update Delivery</a>
       <ng-template ngbNavContent>
       </ng-template>
     </li>
-    <li [ngbNavItem]="5"
+    <!--<li [ngbNavItem]="5"
       routerLinkActive="active"
       ngbTooltip="Generate invoice report"
     >

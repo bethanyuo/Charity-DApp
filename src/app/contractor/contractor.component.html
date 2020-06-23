@@ -1,0 +1,87 @@
+<div class="container">
+    <div [hidden]="submitted">
+        <h1>New Contractor Form</h1>
+        <form (ngSubmit)="onSubmit(clientForm)" #clientForm="ngForm">
+            <div class="form-group">
+                <label for="supplierName">Contractor Name</label>
+                <input type="text" class="form-control" id="supplierName" required [(ngModel)]="model.supplierName" name="supplierName"
+                    #supplierName="ngModel">
+                <div [hidden]="supplierName.valid || supplierName.pristine" class="alert alert-danger">
+                    Contractor Name is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="supplierID">Account Address</label>
+                <input type="text" class="form-control" id="supplierID" required [(ngModel)]="model.supplierID"
+                    name="supplierID" #supplierID="ngModel">
+                <div [hidden]="supplierID.valid || supplierID.pristine" class="alert alert-danger">
+                    Account Address is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="members">Member Size</label>
+                <input type="number" class="form-control" id="members" required [(ngModel)]="model.members"
+                    name="members" #members="ngModel">
+                <div [hidden]="members.valid || members.pristine" class="alert alert-danger">
+                    Member Size is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="primaryContact">Primary Contact</label>
+                <input type="email" class="form-control" id="primaryContact" required [(ngModel)]="model.primaryContact"
+                    name="primaryContact" #primaryContact="ngModel">
+                <div [hidden]="primaryContact.valid || primaryContact.pristine" class="alert alert-danger">
+                    Primary Contact is required
+                </div>
+            </div>
+            <div class=" form-group">
+                <label for="type">Contractor Field</label><br>
+                <!-- <mat-form-field> -->
+                    <!-- <label>Request Type</label> -->
+                    <select [(ngModel)]="model.category" name="type" id="type">
+                        <option *ngFor="let type of types" [value]="type.value">
+                            {{type.viewValue}}
+                        </option>
+                    </select>
+                <!-- </mat-form-field> -->
+                
+                <!-- <div [hidden]="types.valid || types.pristine" class="alert alert-danger">
+                    Request Information is required
+                </div> -->
+            </div><br>
+            <button type="submit" class="btn btn-success" [disabled]="!clientForm.form.valid">Submit</button><br><br>
+            <!-- <button type="submit" class="btn btn-success" >Submit</button>  -->
+            <!-- <div>
+                <hr>
+                Form values via form.controls = {{showFormControls(clientForm)}}
+            </div> -->
+        </form>
+    </div>
+    <div [hidden]="!submitted">
+        <h2>You submitted the following New Client:</h2>
+        <div class="row">
+          <div class="col-xs-3">Name: </div>
+          <div class="col-xs-9">{{ model.supplierName }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Account Address:  </div>
+          <div class="col-xs-9">{{ model.supplierID }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Member Size: </div>
+            <div class="col-xs-9">{{ model.members }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Primary Contact: </div>
+          <div class="col-xs-9">{{ model.primaryContact }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Contractor Field: </div>
+          <div class="col-xs-9">{{ model.category }}</div>
+        </div>
+        <br>
+        <!-- <button class="btn btn-primary" (click)="submitted=false">New</button> -->
+        <button class="btn btn-primary" (click)="newContractor()">New Submission</button>
+    </div>
+</div>

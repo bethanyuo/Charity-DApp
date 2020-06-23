@@ -20,13 +20,17 @@ import { AppComponent } from './app.component';
 import { ClientComponent } from './clients/client/client.component';
 import { SearchComponent } from './search/search.component';
 import { SelectComponent } from './select/select.component';
+import { ContractorComponent } from './contractor/contractor.component';
+import { DeliveryComponent } from './delivery/delivery.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientComponent,
     SearchComponent,
-    SelectComponent
+    SelectComponent,
+    ContractorComponent,
+    DeliveryComponent
   ],
   exports: [
     MatSelectModule,

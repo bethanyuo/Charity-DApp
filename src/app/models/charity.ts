@@ -10,6 +10,6 @@ export class Charity {
     public supplierName: string;
     public supplierID: string;
     constructor() {
-      this.selected = false;
+      //this.selected = true;
     }
   }

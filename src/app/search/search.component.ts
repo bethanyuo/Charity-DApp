@@ -26,6 +26,13 @@ export class SearchComponent implements OnInit {
     this.model = new Charity();
     this.loadedRequests = [];
   }
+
+  // public selected(): boolean {
+  //   if (this.model.selected === true) {
+  //     return true;
+  //   }
+  // }
+
   //datePmtReceived
   public onSubmit(form: NgForm) {
     console.log(form);
@@ -39,6 +46,7 @@ export class SearchComponent implements OnInit {
         if (charity !== undefined) {
           console.log('SUCCESS: ', charity);
           this.loadedRequests.push(charity);
+          //charity.selected = this.model.selected;
           // if (charity.selected === true || charity.selected === null) {
           //   this.unselected = false;
           // }
