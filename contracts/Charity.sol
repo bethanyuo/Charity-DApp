@@ -201,24 +201,6 @@ contract SupplyChain is SimpleERC20Token {
         return charityIndex.length - 1;
     }
 
-    function requestType(string memory charity) public view returns (string memory) {
-        if (Charities[charity].category == Category.Food) {
-            return "Food";
-        } else if (Charities[charity].category == Category.Clothing) {
-            return "Clothing";
-        } else if (Charities[charity].category == Category.Furniture) {
-            return "Furniture";
-        } else if (Charities[charity].category == Category.Education) {
-            return "Education";
-        } else if (Charities[charity].category == Category.Transportation) {
-            return "Transport";
-        } else if (Charities[charity].category == Category.Medical) {
-            return "Medical";
-        } else if (Charities[charity].category == Category.Funding) {
-            return "Funding";
-        }
-    }
-
     function getCharityInfo(string memory charity)
         public
         returns (
@@ -226,7 +208,7 @@ contract SupplyChain is SimpleERC20Token {
             uint256 members,
             string memory primaryContact,
             string memory request,
-            string memory category,
+            Category category,
             uint256 tokenReward,
             bool selected
         )
@@ -242,7 +224,7 @@ contract SupplyChain is SimpleERC20Token {
             Charities[charity].members,
             Charities[charity].primaryContact,
             Charities[charity].request,
-            requestType(charity),
+            Charities[charity].category,
             Charities[charity].tokenReward,
             Charities[charity].selected
         );

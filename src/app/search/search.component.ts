@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from 'src/app/services/search.service';
 import { NgForm } from '@angular/forms';
-import { Charity } from '../models/charity';
+//import { Charity } from '../models/charity';
+import { Search } from '../models/search';
+
+interface Type {
+  value: number;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-search',
@@ -9,12 +15,22 @@ import { Charity } from '../models/charity';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
+  private types: Type[] = [
+    { value: 0, viewValue: 'Food' },
+    { value: 1, viewValue: 'Clothing' },
+    { value: 2, viewValue: 'Furniture' },
+    { value: 3, viewValue: 'Education' },
+    { value: 4, viewValue: 'Transport' },
+    { value: 5, viewValue: 'Medical' },
+    { value: 6, viewValue: 'Funding' }
+  ];
   public submitted = false;
+  public charityName: string;
   // public unselected = true;
-  public model = new Charity();
+  public model = new Search();
   public isFetching: boolean = false;
-  public loadedRequests: Charity[] = [];
+  // public loadedRequests: Charity[] = [];
+  public loadedRequests: Search[] = [];
 
   constructor(private searchService: SearchService) { }
 
@@ -23,7 +39,7 @@ export class SearchComponent implements OnInit {
 
   public newRequest() {
     this.submitted = false;
-    this.model = new Charity();
+    this.model = new Search();
     this.loadedRequests = [];
   }
 
@@ -40,12 +56,24 @@ export class SearchComponent implements OnInit {
     console.log(this.model);
     // Here we need to call the solidity contract to get the list of invoice numbers and then retrieve the invoices one at a time.
     this.isFetching = true;
+    this.charityName = form.controls['name'].value;
     this.searchService.getCharityInfo(form.controls['name'].value)
       .then(charity => {
         this.isFetching = false;
         if (charity !== undefined) {
           console.log('SUCCESS: ', charity);
-          this.loadedRequests.push(charity);
+
+          let viewCharity: Search = new Search();
+          viewCharity.name = this.charityName;
+          viewCharity.ID = charity.ID;
+          viewCharity.members = charity.members;
+          viewCharity.primaryContact = charity.primaryContact;
+          viewCharity.request = charity.request;
+          viewCharity.category = this.types[charity.category].viewValue;
+          viewCharity.tokenReward = charity.tokenReward;
+          viewCharity.selected = charity.selected;
+
+          this.loadedRequests.push(viewCharity);
           //charity.selected = this.model.selected;
           // if (charity.selected === true || charity.selected === null) {
           //   this.unselected = false;

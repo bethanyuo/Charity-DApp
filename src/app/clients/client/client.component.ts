@@ -56,7 +56,7 @@ export class ClientComponent implements OnInit {
     this.clientService.createClient(form.controls['name'].value, form.controls['accountAddress'].value, 
                                     form.controls['request'].value, form.controls['members'].value, 
                                     form.controls['primaryContact'].value, form.controls['urgent'].value, 
-                                    form.controls['type'].value)
+                                    parseInt(form.controls['type'].value))
        .then(res => {
         console.log(res)
       })

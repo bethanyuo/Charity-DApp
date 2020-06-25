@@ -11,7 +11,7 @@ declare let window: any;
   providedIn: 'root'
 })
 export class Web3Service {
-  private CHARITY_ARTIFACTS = require('../../../build/contractABI.json');
+  private CHARITY_ARTIFACTS = require('../../../build/contracts/SupplyChain.json');
   public web3: Web3;
   //private contractAddress = "0x97a5f686fFb2669165395A8186520F4AF9639a75";
   //private contractAddress = "0xae3F8D3Fe2b5ED359D35c45a5014489680E4AF86"; //ropsten
@@ -81,7 +81,7 @@ export class Web3Service {
       //     onTimeout: false
       //   }
       // };
-      let contractAddress = "0x212b0627a41f9e57e442ea908d212a3952a252e5";
+      let contractAddress = "0xaEc9309184033B6b1A99dCcF3e73d22195911B52";
       //let contractAddress = "0x4fa7c2933A553b9346a44ebd9DF6962747a606d4"; //ropsten
       // Hack to provide backwards compatibility for Truffle, which uses web3js 0.20.x
       //Web3.providers.HttpProvider.prototype.sendAsync = Web3.providers.HttpProvider.prototype.send;

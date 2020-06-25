@@ -27,34 +27,34 @@
         <h2>Charity: {{model.name}}</h2>
         <div class="row">
             <p *ngIf="loadedRequests.length < 1 && !isFetching">No Charity Requests available!</p>
-            <table class="table table-bordered">
-                <tbody *ngIf="loadedRequests.length >= 1 && !isFetching">
+            <table class="table table-bordered" *ngIf="loadedRequests.length >= 1 && !isFetching">
+                <tbody *ngFor="let charity of loadedRequests">
                     <!-- <tr *ngFor="let charity of loadedRequests"> -->
-                    <tr *ngFor="let charity of loadedRequests">
+                    <tr>
                         <th>Account Address:</th>
                         <td>{{charity?.ID}}</td>
                     </tr>
-                    <tr *ngFor="let charity of loadedRequests">
+                    <tr>
                         <th>Member Size:</th>
                         <td>{{charity?.members}}</td>
                     </tr>
-                    <tr *ngFor="let charity of loadedRequests">
+                    <tr>
                         <th>Primary Contact:</th>
                         <td>{{charity?.primaryContact}}</td>
                     </tr>
-                    <tr *ngFor="let charity of loadedRequests">
+                    <tr>
                         <th>Request Info:</th>
                         <td>{{charity?.request}}</td>
                     </tr>
-                    <tr *ngFor="let charity of loadedRequests">
+                    <tr>
                         <th>Request Type:</th>
                         <td>{{charity?.category}}</td>
                     </tr>
-                    <tr *ngFor="let charity of loadedRequests">
+                    <tr>
                         <th>Token Reward:</th>
                         <td>{{charity?.tokenReward}}</td>
                     </tr>
-                    <tr *ngFor="let charity of loadedRequests">
+                    <tr>
                         <th>Already Selected:</th>
                         <td>{{charity?.selected}}</td>
                     </tr>
@@ -69,7 +69,7 @@
         <br>
         <!-- <div [disabled]="!unselected">
         </div> -->
-        <app-select [name]="model.name"></app-select>
+        <app-select [name]="model?.name"></app-select>
         <!-- <app-select [selected]="model.selected" [name]="model.name"></app-select> -->
         <!-- <app-select [selected]="selected()" [name]="model.name"></app-select> -->
         <br><br>
