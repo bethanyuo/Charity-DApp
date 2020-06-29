@@ -57,7 +57,7 @@ export class ClientComponent implements OnInit {
                                     form.controls['request'].value, form.controls['members'].value, 
                                     form.controls['primaryContact'].value, form.controls['urgent'].value, 
                                     parseInt(form.controls['type'].value))
-       .then(res => {
+      .then(res => {
         console.log(res)
       })
       .catch(err => {
