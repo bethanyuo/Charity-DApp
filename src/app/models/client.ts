@@ -6,6 +6,7 @@ export class Client {
     public primaryContact: string;
     public urgent: boolean;
     public category: number;
+    public reqType: string;
     constructor() {
       this.name = '';
       this.address = '';
@@ -14,6 +15,7 @@ export class Client {
       this.primaryContact = '';
       this.category = null;
       this.urgent = false;
+      this.reqType = '';
     }
   }
   

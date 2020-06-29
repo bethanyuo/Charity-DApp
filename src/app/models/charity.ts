@@ -12,7 +12,9 @@ export class Charity {
     public supplierName: string;
     public supplierID: string;
     public charityList: string;
+    public reqType: string;
     constructor() {
       //this.selected = true;
+      this.reqType = '';
     }
   }

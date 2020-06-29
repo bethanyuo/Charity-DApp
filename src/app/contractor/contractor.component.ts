@@ -52,6 +52,8 @@ export class ContractorComponent implements OnInit {
     console.log(form);
     this.submitted = true;
     console.log(form.controls);
+    this.model.reqType = this.types[this.model.category].viewValue;
+
 
     this.contractorService.callContractor(form.controls['supplierName'].value, form.controls['supplierID'].value,
       form.controls['members'].value, form.controls['primaryContact'].value,

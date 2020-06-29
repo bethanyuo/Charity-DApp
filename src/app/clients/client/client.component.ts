@@ -30,9 +30,8 @@ export class ClientComponent implements OnInit {
   ];
 
   public submitted: boolean = false;
-  //model = new Client('0xdd18cbfab0297cdea52b16f7ed06625dc5ff6b12', 'test');
   public model: Client = new Client();
-  // invoiceTracker: ethers.Contract;
+
 
   public ngOnInit(): void { }
 
@@ -49,6 +48,7 @@ export class ClientComponent implements OnInit {
     console.log(form);
     this.submitted = true;
     console.log(form.controls);
+    this.model.reqType = this.types[this.model.category].viewValue;
 
     // let flag: boolean;
     // flag = form.controls['urgent'].value;
