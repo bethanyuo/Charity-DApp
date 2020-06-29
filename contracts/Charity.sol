@@ -86,6 +86,7 @@ contract SupplyChain is SimpleERC20Token {
         uint256 tokenReward;
         bool selected;
         Category category;
+        uint256 expiry;
         uint256 index;
     }
 
@@ -98,7 +99,6 @@ contract SupplyChain is SimpleERC20Token {
         uint256 index;
     }
 
-    uint256 public expires;
     string[] public charityIndex;
     string[] private supplierIndex;
     address[] private addressIndex;
@@ -214,11 +214,9 @@ contract SupplyChain is SimpleERC20Token {
         )
     {
         require(isCharity(charity), "Charity requested is not within list");
-
-        if (now > expires) {
+        if (block.timestamp > Charities[charity].expiry) {
             Charities[charity].selected = false;
         }
-
         return (
             Charities[charity].ID,
             Charities[charity].members,
@@ -260,7 +258,7 @@ contract SupplyChain is SimpleERC20Token {
         for (uint256 i = 0; i < charityIndex.length; i++) {
             if (category == categoryMatch(charityIndex[i])) {
                 rString = strConcat(rString, charityIndex[i]);
-                rString = strConcat(rString, ",");
+                rString = strConcat(rString, ", ");
             }
         }
 
@@ -273,9 +271,9 @@ contract SupplyChain is SimpleERC20Token {
         return rString;
     }
 
-    modifier timeCheck() {
+    modifier timeCheck(string memory charity) {
         require(
-            now <= expires,
+            block.timestamp <= Charities[charity].expiry,
             "Time to complete request is up. Token reward reverted!"
         );
         _;
@@ -298,7 +296,7 @@ contract SupplyChain is SimpleERC20Token {
             Charities[charity].selected == false,
             "Charity has already been selected"
         );
-        expires = now + 12 minutes;
+        Charities[charity].expiry = block.timestamp + 10 minutes;
         char2Supp[charity] = supplier;
         return Charities[charity].selected = true;
     }
@@ -307,12 +305,13 @@ contract SupplyChain is SimpleERC20Token {
         string memory charity,
         string memory supplier,
         address supplierID
-    ) public timeCheck returns (bool completedRequest) {
+    ) public timeCheck(charity) returns (bool completedRequest) {
         require(
             hashComp(char2Supp[charity], supplier) == true,
             "Charity was not selected by Contractor provided"
         );
-        transfer(supplierID, Charities[charity].tokenReward);
+        uint tokens = (Charities[charity].tokenReward) * (uint256(10)**decimals);
+        transfer(supplierID, tokens);
         deleteRequest1(charity);
         deleteRequest2(charity);
         return true;

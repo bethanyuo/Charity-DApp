@@ -86,6 +86,14 @@ export class SearchComponent implements OnInit {
         console.log(err);
         alert('SearchComponent.onSubmit(): failed.  Most likely the client does not exist.');
       });
+
+    this.searchService.setCharityInfo(form.controls['name'].value)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      });  
   }
 
   public showFormControls(form: any) {

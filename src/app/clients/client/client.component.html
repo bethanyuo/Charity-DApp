@@ -1,6 +1,6 @@
 <div class="container">
     <div [hidden]="submitted">
-        <h1>New Charity Form</h1>
+        <h1>New Charity Form</h1><br>
         <form (ngSubmit)="onSubmit(clientForm)" #clientForm="ngForm">
             <div class="form-group">
                 <label for="name">Charity Name</label>
@@ -69,10 +69,10 @@
             </div><br>
             <button type="submit" class="btn btn-success" [disabled]="!clientForm.form.valid">Submit</button><br><br>
             <!-- <button type="submit" class="btn btn-success" >Submit</button>  -->
-            <div>
+            <!-- <div>
                 <hr>
                 Form values via form.controls = {{showFormControls(clientForm)}}
-              </div>
+              </div> -->
         </form>
     </div>
     <div [hidden]="!submitted">

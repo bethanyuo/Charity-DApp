@@ -30,8 +30,10 @@ export class ContractorComponent implements OnInit {
   ];
 
   public submitted: boolean = false;
+  //public charityList: string;
   //model = new Client('0xdd18cbfab0297cdea52b16f7ed06625dc5ff6b12', 'test');
   public model: Charity = new Charity();
+  public loadedResults: Charity[] = [];
   // invoiceTracker: ethers.Contract;
 
   public ngOnInit(): void { }
@@ -39,6 +41,7 @@ export class ContractorComponent implements OnInit {
   public newContractor() {
     this.submitted = false;
     this.model = new Charity();
+    this.loadedResults = [];
   }
 
   /**
@@ -50,13 +53,26 @@ export class ContractorComponent implements OnInit {
     this.submitted = true;
     console.log(form.controls);
 
+    this.contractorService.callContractor(form.controls['supplierName'].value, form.controls['supplierID'].value,
+      form.controls['members'].value, form.controls['primaryContact'].value,
+      form.controls['type'].value)
+      .then(res => {
+        let viewCharity: Charity = new Charity();
+        viewCharity.charityList = res;
+        this.loadedResults.push(viewCharity);
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      });
+
     // let flag: boolean;
     // flag = form.controls['urgent'].value;
     // console.log("DEBUG1 flag=",flag);
-    this.contractorService.createContractor(form.controls['supplierName'].value, form.controls['supplierID'].value, 
-                                    form.controls['members'].value, form.controls['primaryContact'].value, 
-                                    form.controls['type'].value)
-       .then(res => {
+    this.contractorService.createContractor(form.controls['supplierName'].value, form.controls['supplierID'].value,
+      form.controls['members'].value, form.controls['primaryContact'].value,
+      form.controls['type'].value)
+      .then(res => {
         console.log(res)
       })
       .catch(err => {
@@ -65,3 +81,4 @@ export class ContractorComponent implements OnInit {
   }
 
 }
+

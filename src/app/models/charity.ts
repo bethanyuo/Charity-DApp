@@ -11,6 +11,7 @@ export class Charity {
     public selected: boolean;
     public supplierName: string;
     public supplierID: string;
+    public charityList: string;
     constructor() {
       //this.selected = true;
     }

@@ -1,6 +1,6 @@
 <div class="container">
     <div [hidden]="submitted">
-        <h1>Search Available Charities</h1>
+        <h1>Search Available Charities</h1><br>
         <form (ngSubmit)="onSubmit(searchForm)" #searchForm="ngForm">
 
             <div class="form-group">
@@ -10,15 +10,15 @@
                 <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
                     Charity Name is required
                 </div>
-            </div>
+            </div><br>
 
             <button type="submit" class="btn btn-success" [disabled]="!searchForm.form.valid">Submit</button>
 
             <!-- NOT SHOWN IN DOCS -->
-            <div>
+            <!-- <div>
                 <hr>
                 Form values via form.controls = {{showFormControls(searchForm)}}
-            </div>
+            </div> -->
             <!-- - -->
         </form>
     </div>

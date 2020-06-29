@@ -18,8 +18,10 @@ export class ClientService {
     try {
       //let owner: string = await this.web3Service.contract.methods.getCurrentOwner().call();
       //let owner: string = "0x81E0ABF825FA3DF39E2EF2B063504C344B9702D3A".toUpperCase();
-      let owner: string = this.web3Service.owner;
-      return await this.web3Service.contract.methods.addCharity(charityName, charityID, request, members, primaryContact, urgent, requestType).send({ from: owner, gas: 3000000 });
+    // const accounts = await this.web3Service.web3.eth.getAccounts();
+    // const from = accounts[0];
+    //  let owner: string = this.web3Service.owner;
+      return await this.web3Service.contract.methods.addCharity(charityName, charityID, request, members, primaryContact, urgent, requestType).send({ from: charityID, gas: 3000000 });
     } catch (err) {
       console.log('ClientService.createClient(): failed:', err);
       alert('ClientService.createClient(): failed:' + err);
