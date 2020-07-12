@@ -1,6 +1,8 @@
-# Charity
+# Charity DApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
+Develop and deploy a decentralized application that will allow various `Charities` to request supplies and other means of support from available `Contractors`. Upon completing these request in a time-senstive manner, the Contractor will be rewarded with a predefined amount of `ERC20 Tokens`. 
+
+> This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
 ## Development server
 
